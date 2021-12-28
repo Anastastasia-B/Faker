@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0D615F7-A88B-4774-B326-3A4406C6A64D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FakerLib</RootNamespace>
-    <AssemblyName>FakerLib</AssemblyName>
+    <ProjectGuid>{3C1B3643-1E66-4AAD-9A32-A78D4501A246}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BoolGenerator</RootNamespace>
+    <AssemblyName>BoolGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,17 +32,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BoolGenerator.cs" />
-    <Compile Include="Faker.cs" />
-    <Compile Include="IGenerator.cs" />
-    <Compile Include="IntGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
