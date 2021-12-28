@@ -40,9 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoolGenerator.cs" />
+    <Compile Include="ByteGenerator.cs" />
     <Compile Include="Faker.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IntGenerator.cs" />
+    <Compile Include="LongGenerator.cs" />
+    <Compile Include="ShortGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -40,7 +40,10 @@ namespace FakerLib
         private void BuildGeneratorsCollection()
         {
             generators.Add(typeof(bool), new BoolGenerator(Random));
-            // generators.Add(typeof(int), new IntGenerator(Random));
+            generators.Add(typeof(int), new IntGenerator(Random));
+            generators.Add(typeof(short), new ShortGenerator(Random));
+            generators.Add(typeof(long), new LongGenerator(Random));
+            generators.Add(typeof(byte), new ByteGenerator(Random));
         }
 
         public IGenerator GetGenerator(Type type)
