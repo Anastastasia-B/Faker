@@ -14,6 +14,10 @@ namespace ConsoleApp
             Person person = faker.Create<Person>();
             var result = JsonConvert.SerializeObject(person);
             Console.WriteLine(result);
+
+            C c = faker.Create<C>();
+            result = JsonConvert.SerializeObject(c);
+            Console.WriteLine(result);
         }
 
         class Person
@@ -33,6 +37,21 @@ namespace ConsoleApp
                 this.dateOfBirth = dateOfBirth;
                 this.password = password;
             }
+        }
+
+        class A
+        {
+            public B b { get; set; }
+        }
+
+        class B
+        {
+            public C c { get; set; }
+        }
+
+        class C
+        {
+            public A a { get; set; }
         }
     }
 }

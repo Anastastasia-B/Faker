@@ -42,6 +42,7 @@
     <Compile Include="BoolGenerator.cs" />
     <Compile Include="ByteGenerator.cs" />
     <Compile Include="CharGenerator.cs" />
+    <Compile Include="CicleDependenciesDetector.cs" />
     <Compile Include="DateTimeGenerator.cs" />
     <Compile Include="DecimalGenerator.cs" />
     <Compile Include="DoubleGeneator.cs" />
@@ -54,6 +55,9 @@
     <Compile Include="LongGenerator.cs" />
     <Compile Include="ShortGenerator.cs" />
     <Compile Include="StringGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,7 @@ namespace FakerLib
 {
     public class Faker
     {
+        private readonly CicleDependenciesDetector cicleDetector = new CicleDependenciesDetector();
         private readonly List<IGenerator> generators = new List<IGenerator>();
         private readonly Random Random = new Random();
 
@@ -32,22 +33,26 @@ namespace FakerLib
                 }
             }
 
-            if (true)
+            if (cicleDetector.IsCycleDependencyDetected(type))
             {
-                var constructor = GetConstructorWithMaxParametersCount(type);
-                if (constructor == null)
-                {
-                    throw new ArgumentException("Class: " + type + " has no public constructors");
-                }
-
-                var result = CreateUsingConstructor(type, constructor);
-                FillPublicFields(result);
-                FillPublicProperties(result);
-
-                return result;
+                return null;
             }
 
-            return default;
+            cicleDetector.PushType(type);
+
+            var constructor = GetConstructorWithMaxParametersCount(type);
+            if (constructor == null)
+            {
+                throw new ArgumentException("Class: " + type + " has no public constructors");
+            }
+
+            var result = CreateUsingConstructor(type, constructor);
+            FillPublicFields(result);
+            FillPublicProperties(result);
+
+            cicleDetector.PopType();
+
+            return result;
         }
 
         private void BuildGeneratorsCollection()
