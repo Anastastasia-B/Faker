@@ -49,6 +49,7 @@ namespace FakerLib
             generators.Add(typeof(decimal), new DecimalGenerator(Random));
             generators.Add(typeof(char), new CharGenerator(Random));
             generators.Add(typeof(string), new StringGenerator(Random));
+            generators.Add(typeof(DateTime), new DateTimeGenerator(Random));
         }
 
         public IGenerator GetGenerator(Type type)
