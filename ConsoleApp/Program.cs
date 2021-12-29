@@ -12,59 +12,33 @@ namespace ConsoleApp
         {
             Faker faker = new Faker();
             Person person = faker.Create<Person>();
-            var result = JsonConvert.SerializeObject(person);
-            Console.WriteLine(result);
-
-            C c = faker.Create<C>();
-            result = JsonConvert.SerializeObject(c);
-            Console.WriteLine(result);
-
-            Dog dog = faker.Create<Dog>();
-            result = JsonConvert.SerializeObject(dog);
+            var result = JsonConvert.SerializeObject(person, Formatting.Indented);
             Console.WriteLine(result);
         }
 
         class Person
         {
+            public string name;
             public DateTime dateOfBirth;
-            public bool alive;
-            public string password;
-            public byte friendsNumber { get; set; }
-            public byte catsNumber;
-            public byte dogsNumber;
+            public bool isAdmin;
+            public byte rating { get; set; }
+            public List<Ticket> tickets;
 
             public Person(DateTime dateOfBirth)
             {
                 this.dateOfBirth = dateOfBirth;
             }
-            public Person(DateTime dateOfBirth, string password)
+            public Person(DateTime dateOfBirth, string name)
             {
                 this.dateOfBirth = dateOfBirth;
-                this.password = password;
-                friendsNumber = 44;
-                dogsNumber = 3;
+                this.name = name;
+                rating = 55;
             }
         }
-
-        class A
+        struct Ticket
         {
-            public B b { get; set; }
-        }
-
-        class B
-        {
-            public C c { get; set; }
-        }
-
-        class C
-        {
-            public A a { get; set; }
-        }
-
-        struct Dog
-        {
-            public string name;
-            public byte age;
+            public string code;
+            public DateTime expiresAt;
         }
     }
 }
