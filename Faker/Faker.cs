@@ -32,7 +32,7 @@ namespace FakerLib
                 }
             }
 
-            if (type.IsClass)
+            if (true)
             {
                 var constructor = GetConstructorWithMaxParametersCount(type);
                 if (constructor == null)
@@ -40,7 +40,11 @@ namespace FakerLib
                     throw new ArgumentException("Class: " + type + " has no public constructors");
                 }
 
-                return CreateUsingConstructor(type, constructor);
+                var result = CreateUsingConstructor(type, constructor);
+                FillPublicFields(result);
+                FillPublicProperties(result);
+
+                return result;
             }
 
             return default;
@@ -72,6 +76,27 @@ namespace FakerLib
             {
                 Console.WriteLine(e.StackTrace);
                 return null;
+            }
+        }
+
+        private void FillPublicFields(object instance)
+        {
+            FieldInfo[] fields = instance.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+            foreach (FieldInfo field in fields)
+            {
+                field.SetValue(instance, Create(field.FieldType));
+            }
+        }
+
+        private void FillPublicProperties(object instance)
+        {
+            PropertyInfo[] properties = instance.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.CanWrite)
+                {
+                    property.SetValue(instance, Create(property.PropertyType));
+                }
             }
         }
 

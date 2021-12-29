@@ -21,6 +21,8 @@ namespace ConsoleApp
             public DateTime dateOfBirth;
             public bool alive;
             public string password;
+            public byte friendsNumber { get; set; }
+            public byte catsNumber;
 
             public Person(DateTime dateOfBirth)
             {
