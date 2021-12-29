@@ -10,7 +10,7 @@ namespace FakerLib
     public class Faker
     {
         private readonly CicleDependenciesDetector cicleDetector = new CicleDependenciesDetector();
-        private readonly List<IGenerator> generators = new List<IGenerator>();
+        private List<IGenerator> generators = new List<IGenerator>();
         private readonly Random Random = new Random();
 
         public Faker()
@@ -78,17 +78,18 @@ namespace FakerLib
 
         private void BuildGeneratorsCollection()
         {
+            PluginLoader.LoadPlugins(generators);
             generators.Add(new BoolGenerator());
             generators.Add(new IntGenerator());
             generators.Add(new ShortGenerator());
             generators.Add(new LongGenerator());
-            generators.Add(new ByteGenerator());
+            // generators.Add(new ByteGenerator());
             generators.Add(new DoubleGenerator());
             generators.Add(new FloatGenerator());
             generators.Add(new DecimalGenerator());
             generators.Add(new CharGenerator());
             generators.Add(new StringGenerator());
-            generators.Add(new DateTimeGenerator());
+            // generators.Add(new DateTimeGenerator());
             generators.Add(new ListGenerator());
         }
 
