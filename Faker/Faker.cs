@@ -47,6 +47,8 @@ namespace FakerLib
             generators.Add(typeof(double), new DoubleGenerator(Random));
             generators.Add(typeof(float), new FloatGenerator(Random));
             generators.Add(typeof(decimal), new DecimalGenerator(Random));
+            generators.Add(typeof(char), new CharGenerator(Random));
+            generators.Add(typeof(string), new StringGenerator(Random));
         }
 
         public IGenerator GetGenerator(Type type)

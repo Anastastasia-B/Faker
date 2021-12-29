@@ -16,7 +16,9 @@ namespace ConsoleApp
             float v5 = faker.Create<float>();
             double v6 = faker.Create<double>();
             decimal v7 = faker.Create<decimal>();
-            Console.WriteLine($"bool: {variable}\nint: {v1}\nbyte: {v2}\nshort: {v3}\nlong: {v4}\nfloat: {v5}\ndouble: {v6}\ndecimal: {v7}");
+            char v8 = faker.Create<char>();
+            string v9 = faker.Create<string>();
+            Console.WriteLine($"bool: {variable}\nint: {v1}\nbyte: {v2}\nshort: {v3}\nlong: {v4}\nfloat: {v5}\ndouble: {v6}\ndecimal: {v7}\nchar: {v8}\nstring: {v9}");
         }
     }
 }
