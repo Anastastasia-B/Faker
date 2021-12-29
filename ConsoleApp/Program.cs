@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FakerLib;
 
 namespace ConsoleApp
@@ -19,7 +20,13 @@ namespace ConsoleApp
             char v8 = faker.Create<char>();
             string v9 = faker.Create<string>();
             DateTime v10 = faker.Create<DateTime>();
+            List<bool> list = faker.Create<List<bool>>();
             Console.WriteLine($"bool: {variable}\nint: {v1}\nbyte: {v2}\nshort: {v3}\nlong: {v4}\nfloat: {v5}\ndouble: {v6}\ndecimal: {v7}\nchar: {v8}\nstring: {v9}\nDateTime: {v10}");
+
+            foreach(bool item in list)
+            {
+                Console.Write($"{item}, ");
+            }
         }
     }
 }
