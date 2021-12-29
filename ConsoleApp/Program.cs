@@ -27,6 +27,7 @@ namespace ConsoleApp
             public string password;
             public byte friendsNumber { get; set; }
             public byte catsNumber;
+            public byte dogsNumber;
 
             public Person(DateTime dateOfBirth)
             {
@@ -36,6 +37,8 @@ namespace ConsoleApp
             {
                 this.dateOfBirth = dateOfBirth;
                 this.password = password;
+                friendsNumber = 44;
+                dogsNumber = 3;
             }
         }
 

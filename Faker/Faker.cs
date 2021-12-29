@@ -89,7 +89,11 @@ namespace FakerLib
             FieldInfo[] fields = instance.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
             foreach (FieldInfo field in fields)
             {
-                field.SetValue(instance, Create(field.FieldType));
+                if ((field.FieldType.IsValueType && field.GetValue(instance).Equals(Activator.CreateInstance(field.FieldType))) ||
+                        (!field.FieldType.IsValueType && field.GetValue(instance) == null))
+                {
+                    field.SetValue(instance, Create(field.FieldType));
+                }
             }
         }
 
@@ -100,7 +104,11 @@ namespace FakerLib
             {
                 if (property.CanWrite)
                 {
-                    property.SetValue(instance, Create(property.PropertyType));
+                    if ((property.PropertyType.IsValueType && property.GetValue(instance).Equals(Activator.CreateInstance(property.PropertyType))) ||
+                        (!property.PropertyType.IsValueType && property.GetValue(instance) == null))
+                    {
+                        property.SetValue(instance, Create(property.PropertyType));
+                    }
                 }
             }
         }
