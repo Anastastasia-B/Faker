@@ -34,15 +34,13 @@ namespace FakerLib
 
             if (type.IsClass)
             {
-                var constructor = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public).ToList().First();
+                var constructor = GetConstructorWithMaxParametersCount(type);
                 if (constructor == null)
                 {
                     throw new ArgumentException("Class: " + type + " has no public constructors");
                 }
 
-                var result = CreateUsingConstructor(type, constructor);
-
-                return result;
+                return CreateUsingConstructor(type, constructor);
             }
 
             return default;
@@ -75,6 +73,19 @@ namespace FakerLib
                 Console.WriteLine(e.StackTrace);
                 return null;
             }
+        }
+
+        private ConstructorInfo GetConstructorWithMaxParametersCount(Type type)
+        {
+            var constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public).ToList();
+
+            constructors.Sort((x, y) =>
+            {
+                var xx = x.GetParameters().Length;
+                var yy = y.GetParameters().Length;
+                return yy.CompareTo(xx);
+            });
+            return constructors.FirstOrDefault();
         }
     }
 }

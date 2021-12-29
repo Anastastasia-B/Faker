@@ -22,11 +22,14 @@ namespace ConsoleApp
             public bool alive;
             public string password;
 
-            public Person()
+            public Person(DateTime dateOfBirth)
             {
-                dateOfBirth = DateTime.Now;
-                alive = true;
-                password = "heh";
+                this.dateOfBirth = dateOfBirth;
+            }
+            public Person(DateTime dateOfBirth, string password)
+            {
+                this.dateOfBirth = dateOfBirth;
+                this.password = password;
             }
         }
     }
