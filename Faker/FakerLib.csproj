@@ -41,7 +41,10 @@
   <ItemGroup>
     <Compile Include="BoolGenerator.cs" />
     <Compile Include="ByteGenerator.cs" />
+    <Compile Include="DecimalGenerator.cs" />
+    <Compile Include="DoubleGeneator.cs" />
     <Compile Include="Faker.cs" />
+    <Compile Include="FloatGenerator.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IntGenerator.cs" />
     <Compile Include="LongGenerator.cs" />
