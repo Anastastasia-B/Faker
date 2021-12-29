@@ -8,16 +8,13 @@ namespace FakerLib
 {
     public class ByteGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public ByteGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
+            return (byte)context.Random.Next(byte.MinValue, byte.MaxValue);
         }
-
-        public object Generate()
+        public bool CanGenerate(Type type)
         {
-            return (byte)random.Next(byte.MinValue, byte.MaxValue);
+            return type == typeof(byte);
         }
     }
 }

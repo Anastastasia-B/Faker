@@ -8,18 +8,15 @@ namespace FakerLib
 {
     public class StringGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public StringGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
-        }
-
-        public object Generate()
-        {
-            var bytes = new byte[random.Next(8, 16)];
-            random.NextBytes(bytes);
+            var bytes = new byte[context.Random.Next(8, 16)];
+            context.Random.NextBytes(bytes);
             return Convert.ToBase64String(bytes);
+        }
+        public bool CanGenerate(Type type)
+        {
+            return type == typeof(string);
         }
     }
 }

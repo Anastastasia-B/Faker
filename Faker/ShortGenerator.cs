@@ -8,16 +8,14 @@ namespace FakerLib
 {
     public class ShortGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public ShortGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
+            return (short)context.Random.Next(short.MinValue, short.MaxValue);
         }
 
-        public object Generate()
+        public bool CanGenerate(Type type)
         {
-            return (short)random.Next(short.MinValue, short.MaxValue);
+            return type == typeof(short);
         }
     }
 }

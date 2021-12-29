@@ -8,16 +8,13 @@ namespace FakerLib
 {
     public class CharGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public CharGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
+            return (char)context.Random.Next('A', 'z');
         }
-
-        public object Generate()
+        public bool CanGenerate(Type type)
         {
-            return (char)random.Next('A', 'z');
+            return type == typeof(char);
         }
     }
 }

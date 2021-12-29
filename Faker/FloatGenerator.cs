@@ -8,19 +8,16 @@ namespace FakerLib
 {
     public class FloatGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public FloatGenerator(Random random)
-        {
-            this.random = random;
-        }
-
-        public object Generate()
+        public object Generate(GeneratorContext context)
         {
             double range = (double)float.MaxValue - (double)float.MinValue;
-            double sample = random.NextDouble();
+            double sample = context.Random.NextDouble();
             double scaled = (sample * range) + float.MinValue;
             return (float)scaled;
+        }
+        public bool CanGenerate(Type type)
+        {
+            return type == typeof(float);
         }
     }
 }

@@ -8,18 +8,16 @@ namespace FakerLib
 {
     public class DoubleGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public DoubleGenerator(Random random)
-        {
-            this.random = random;
-        }
-
-        public object Generate()
+        public object Generate(GeneratorContext context)
         {
             double range = double.MaxValue;
-            double sample = random.NextDouble();
+            double sample = context.Random.NextDouble();
             return (sample * range) + double.MinValue / 2;
+        }
+
+        public bool CanGenerate(Type type)
+        {
+            return type == typeof(double);
         }
     }
 }

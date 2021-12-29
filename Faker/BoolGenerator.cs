@@ -8,16 +8,13 @@ namespace FakerLib
 {
     public class BoolGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public BoolGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
+            return Convert.ToBoolean(context.Random.Next(2));
         }
-
-        public object Generate()
+        public bool CanGenerate(Type type)
         {
-            return Convert.ToBoolean(random.Next(2));
+            return type == typeof(bool);
         }
     }
 }

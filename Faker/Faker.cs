@@ -8,7 +8,7 @@ namespace FakerLib
 {
     public class Faker
     {
-        private readonly Dictionary<Type, IGenerator> generators = new Dictionary<Type, IGenerator>();
+        private readonly List<IGenerator> generators = new List<IGenerator>();
         private readonly Random Random = new Random();
 
         public Faker()
@@ -21,12 +21,15 @@ namespace FakerLib
             return (T)Create(typeof(T));
         }
 
-        private object Create(Type type)
+        public object Create(Type type)
         {
-            var generator = GetGenerator(type);
-            if (generator != null)
+            foreach (IGenerator generator in generators)
             {
-                return generator.Generate();
+                if (generator.CanGenerate(type))
+                {
+                    var v = generator.Generate(new GeneratorContext(Random, type, this));
+                    return v;
+                }
             }
 
             if (type.IsClass)
@@ -39,23 +42,18 @@ namespace FakerLib
 
         private void BuildGeneratorsCollection()
         {
-            generators.Add(typeof(bool), new BoolGenerator(Random));
-            generators.Add(typeof(int), new IntGenerator(Random));
-            generators.Add(typeof(short), new ShortGenerator(Random));
-            generators.Add(typeof(long), new LongGenerator(Random));
-            generators.Add(typeof(byte), new ByteGenerator(Random));
-            generators.Add(typeof(double), new DoubleGenerator(Random));
-            generators.Add(typeof(float), new FloatGenerator(Random));
-            generators.Add(typeof(decimal), new DecimalGenerator(Random));
-            generators.Add(typeof(char), new CharGenerator(Random));
-            generators.Add(typeof(string), new StringGenerator(Random));
-            generators.Add(typeof(DateTime), new DateTimeGenerator(Random));
-        }
-
-        public IGenerator GetGenerator(Type type)
-        {
-            generators.TryGetValue(type, out var result);
-            return result;
+            generators.Add(new BoolGenerator());
+            generators.Add(new IntGenerator());
+            generators.Add(new ShortGenerator());
+            generators.Add(new LongGenerator());
+            generators.Add(new ByteGenerator());
+            generators.Add(new DoubleGenerator());
+            generators.Add(new FloatGenerator());
+            generators.Add(new DecimalGenerator());
+            generators.Add(new CharGenerator());
+            generators.Add(new StringGenerator());
+            generators.Add(new DateTimeGenerator());
+            generators.Add(new ListGenerator());
         }
     }
 }

@@ -47,8 +47,10 @@
     <Compile Include="DoubleGeneator.cs" />
     <Compile Include="Faker.cs" />
     <Compile Include="FloatGenerator.cs" />
+    <Compile Include="GeneratorContext.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IntGenerator.cs" />
+    <Compile Include="ListGenerator.cs" />
     <Compile Include="LongGenerator.cs" />
     <Compile Include="ShortGenerator.cs" />
     <Compile Include="StringGenerator.cs" />

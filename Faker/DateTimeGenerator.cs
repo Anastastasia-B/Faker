@@ -8,23 +8,20 @@ namespace FakerLib
 {
     public class DateTimeGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public DateTimeGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
-        }
-
-        public object Generate()
-        {
-            int year = random.Next(1, DateTime.Now.Year);
-            int month = random.Next(1, 12);
-            int day = random.Next(1, DateTime.DaysInMonth(year, month));
-            int hours = random.Next(24);
-            int minutes = random.Next(60);
-            int seconds = random.Next(60);
+            int year = context.Random.Next(1, DateTime.Now.Year);
+            int month = context.Random.Next(1, 12);
+            int day = context.Random.Next(1, DateTime.DaysInMonth(year, month));
+            int hours = context.Random.Next(24);
+            int minutes = context.Random.Next(60);
+            int seconds = context.Random.Next(60);
 
             return new DateTime(year, month, day, hours, minutes, seconds);
+        }
+        public bool CanGenerate(Type type)
+        {
+            return type == typeof(DateTime);
         }
     }
 }

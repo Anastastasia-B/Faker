@@ -8,18 +8,16 @@ namespace FakerLib
 {
     public class LongGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public LongGenerator(Random random)
-        {
-            this.random = random;
-        }
-
-        public object Generate()
+        public object Generate(GeneratorContext context)
         {
             byte[] buffer = new byte[8];
-            random.NextBytes(buffer);
+            context.Random.NextBytes(buffer);
             return BitConverter.ToInt64(buffer, 0);
+        }
+
+        public bool CanGenerate(Type type)
+        {
+            return type == typeof(long);
         }
     }
 }

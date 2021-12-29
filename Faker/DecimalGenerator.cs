@@ -8,16 +8,13 @@ namespace FakerLib
 {
     public class DecimalGenerator : IGenerator
     {
-        private readonly Random random;
-
-        public DecimalGenerator(Random random)
+        public object Generate(GeneratorContext context)
         {
-            this.random = random;
+            return new decimal(context.Random.Next(int.MinValue, int.MaxValue) + context.Random.NextDouble());
         }
-
-        public object Generate()
+        public bool CanGenerate(Type type)
         {
-            return new decimal(random.Next(int.MinValue, int.MaxValue) + random.NextDouble());
+            return type == typeof(decimal);
         }
     }
 }
