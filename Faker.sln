@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteGenerator", "ByteGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeGenerator", "DateTimeGenerator\DateTimeGenerator.csproj", "{34623619-F9C1-480B-B88B-E3BC5FA9FE45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2699A157-EF09-4E71-8D4E-FC385549A4CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{34623619-F9C1-480B-B88B-E3BC5FA9FE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34623619-F9C1-480B-B88B-E3BC5FA9FE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34623619-F9C1-480B-B88B-E3BC5FA9FE45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2699A157-EF09-4E71-8D4E-FC385549A4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2699A157-EF09-4E71-8D4E-FC385549A4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2699A157-EF09-4E71-8D4E-FC385549A4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2699A157-EF09-4E71-8D4E-FC385549A4CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
