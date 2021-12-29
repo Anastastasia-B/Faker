@@ -40,10 +40,11 @@ namespace FakerLib
 
             cicleDetector.PushType(type);
 
+            object result = null;
             var constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public).ToList();
             if (constructors.Count == 0)
             {
-                throw new ArgumentException("Class: " + type + " has no public constructors");
+                result = Activator.CreateInstance(type);
             }
 
             constructors.Sort((x, y) =>
@@ -53,7 +54,6 @@ namespace FakerLib
                 return yy.CompareTo(xx);
             });
 
-            object result = null;
             foreach (var constructor in constructors)
             {
                 try
@@ -61,13 +61,13 @@ namespace FakerLib
                     result = CreateUsingConstructor(type, constructor);
                     break;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     continue;
                 }
             }
-            
+
             FillPublicFields(result);
             FillPublicProperties(result);
 

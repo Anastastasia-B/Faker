@@ -18,6 +18,10 @@ namespace ConsoleApp
             C c = faker.Create<C>();
             result = JsonConvert.SerializeObject(c);
             Console.WriteLine(result);
+
+            Dog dog = faker.Create<Dog>();
+            result = JsonConvert.SerializeObject(dog);
+            Console.WriteLine(result);
         }
 
         class Person
@@ -55,6 +59,12 @@ namespace ConsoleApp
         class C
         {
             public A a { get; set; }
+        }
+
+        struct Dog
+        {
+            public string name;
+            public byte age;
         }
     }
 }
