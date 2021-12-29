@@ -40,13 +40,34 @@ namespace FakerLib
 
             cicleDetector.PushType(type);
 
-            var constructor = GetConstructorWithMaxParametersCount(type);
-            if (constructor == null)
+            var constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public).ToList();
+            if (constructors.Count == 0)
             {
                 throw new ArgumentException("Class: " + type + " has no public constructors");
             }
 
-            var result = CreateUsingConstructor(type, constructor);
+            constructors.Sort((x, y) =>
+            {
+                var xx = x.GetParameters().Length;
+                var yy = y.GetParameters().Length;
+                return yy.CompareTo(xx);
+            });
+
+            object result = null;
+            foreach (var constructor in constructors)
+            {
+                try
+                {
+                    result = CreateUsingConstructor(type, constructor);
+                    break;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    continue;
+                }
+            }
+            
             FillPublicFields(result);
             FillPublicProperties(result);
 
@@ -111,19 +132,6 @@ namespace FakerLib
                     }
                 }
             }
-        }
-
-        private ConstructorInfo GetConstructorWithMaxParametersCount(Type type)
-        {
-            var constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public).ToList();
-
-            constructors.Sort((x, y) =>
-            {
-                var xx = x.GetParameters().Length;
-                var yy = y.GetParameters().Length;
-                return yy.CompareTo(xx);
-            });
-            return constructors.FirstOrDefault();
         }
     }
 }
